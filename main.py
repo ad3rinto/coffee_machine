@@ -70,11 +70,11 @@ def collect_payment(option, payment, available_resource):
 
 
 
-
+print (coffee_art)
 while status:
 
     # TODO: 1. Prompt user to request their choice of drink
-    print (coffee_art)
+
     customer_choice = input("What whould you like? (espresso/latte/cappuccino): \n").lower()
     # TODO: 2. Turn off the machine by entering "off".
     if customer_choice == "off":
