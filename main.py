@@ -41,10 +41,22 @@ def print_report(available_resource):
     print(f" The machine has {water_level}ml, {milk_level}ml and {coffee_level}gm available")
 
 def check_resources(option, available_resource):
-    if MENU[option]["ingredients"]["water"] > available_resource["water"] and (MENU[option]["ingredients"]["coffee"] ) > (available_resource["coffee"]):
-        return False
+    if option == "latte" or option == "cappuccino":
+        if (MENU[option]["ingredients"]["water"] > available_resource["water"] and
+        (MENU[option]["ingredients"]["coffee"] ) > (available_resource["coffee"] and
+        (MENU[option]["ingredients"]["milk"] ) > (available_resource["milk"]))):
+            return False
+        else:
+            return True
+    elif option == "espresso":
+        if (MENU[option]["ingredients"]["water"] > available_resource["water"] and (MENU[option]["ingredients"]["coffee"]) > (available_resource["coffee"])):
+            return False
+        else:
+            return True
     else:
-        return True
+        print("Invalid option")
+
+
 
 def collect_payment(option, payment, available_resource):
     if payment >= MENU[option]["cost"]:
@@ -74,11 +86,17 @@ while status:
     # TODO: 4. Check if available resources are enough for user's choice
     elif customer_choice == "latte" or customer_choice == "cappuccino" or customer_choice == "espresso":
         hello = check_resources(customer_choice, resources)
-        print(hello)
         if hello:
             # TODO: 5. Accept payment. Check if amount provided is enough for the drink requested
             paid_amount = float(input("How much do you have? : "))
             collect_payment(customer_choice, paid_amount, resources)
+            if customer_choice == "latte" or customer_choice == "cappuccino":
+                resources["water"] = resources["water"] - MENU[customer_choice]["ingredients"]["water"]
+                resources["coffee"] = resources["coffee"] - MENU[customer_choice]["ingredients"]["coffee"]
+                resources["milk"] = resources["milk"] - MENU[customer_choice]["ingredients"]["milk"]
+            elif customer_choice == "espresso":
+                resources["water"] = resources["water"] - MENU[customer_choice]["ingredients"]["water"]
+                resources["coffee"] = resources["coffee"] - MENU[customer_choice]["ingredients"]["coffee"]
 
         else:
             print("Insufficient funds, try again")
