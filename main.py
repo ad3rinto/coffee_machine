@@ -90,6 +90,7 @@ while status:
             # TODO: 5. Accept payment. Check if amount provided is enough for the drink requested
             paid_amount = float(input("How much do you have? : "))
             collect_payment(customer_choice, paid_amount, resources)
+            # TODO: 7. deduct resources
             if customer_choice == "latte" or customer_choice == "cappuccino":
                 resources["water"] = resources["water"] - MENU[customer_choice]["ingredients"]["water"]
                 resources["coffee"] = resources["coffee"] - MENU[customer_choice]["ingredients"]["coffee"]
@@ -114,7 +115,7 @@ while status:
 
 
 
-# TODO: 7. deduct resources
+
 
 
 
