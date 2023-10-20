@@ -88,7 +88,7 @@ while status:
         hello = check_resources(customer_choice, resources)
         if hello:
             # TODO: 5. Accept payment. Check if amount provided is enough for the drink requested
-            paid_amount = float(input("How much do you have? : "))
+            paid_amount = float(input("How much do you have to spend ? : "))
             collect_payment(customer_choice, paid_amount, resources)
             # TODO: 7. deduct resources
             if customer_choice == "latte" or customer_choice == "cappuccino":
