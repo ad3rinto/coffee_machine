@@ -35,12 +35,14 @@ resources = {
 status = True
 
 def print_report(available_resource):
+    """ prints a list of all available resources"""
     water_level = available_resource["water"]
     milk_level = available_resource["milk"]
     coffee_level = available_resource["coffee"]
     print(f" The machine has {water_level}ml, {milk_level}ml and {coffee_level}gm available")
 
 def check_resources(option, available_resource):
+    """ takes customer choice and validates there is enough ingredients to make their request"""
     if option == "latte" or option == "cappuccino":
         if (MENU[option]["ingredients"]["water"] > available_resource["water"] and
         (MENU[option]["ingredients"]["coffee"] ) > (available_resource["coffee"] and
